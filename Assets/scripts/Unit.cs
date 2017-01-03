@@ -4,36 +4,36 @@ using System.Collections;
 public class Unit : MonoBehaviour {
 
     [System.NonSerialized]
-    public Task[] availableCommands;
+    public Task[] availableTasks;
 
     void Start()
     {
-        availableCommands = GetComponents<Task>();
+        availableTasks = GetComponents<Task>();
     }
 
-    public T ChangeCommand<T>() where T :Task
+    public T ChangeTask<T>() where T :Task
     {
-        DisableAllCommands();
-        for (int i = 0; i < availableCommands.Length; i++)
+        CencelAllTasks();
+        for (int i = 0; i < availableTasks.Length; i++)
         {
-            Task command = availableCommands[i];
-            if (availableCommands[i] is T && !command.GetType().IsSubclassOf(typeof(T)))
+            Task task = availableTasks[i];
+            if (availableTasks[i] is T && !task.GetType().IsSubclassOf(typeof(T)))
             {
-                command.enabled = true;
-                return command as T;
+                task.enabled = true;
+                return task as T;
             }
         }
         new System.Exception("Command not available for this unit");
         return null;
     }
 
-    public void DisableAllCommands()
+    public void CencelAllTasks()
     {
-        for (int i = 0; i < availableCommands.Length; i++)
+        for (int i = 0; i < availableTasks.Length; i++)
         {
-            if (availableCommands[i].enabled)
+            if (availableTasks[i].enabled)
             {
-                availableCommands[i].enabled = false;
+                availableTasks[i].enabled = false;
             }
         }
     }

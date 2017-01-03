@@ -118,8 +118,8 @@ public class SelectionManager : MonoBehaviour
         {
             for (int i = 0; i < SelectedUnits.Count; i++)
             {
-                GoToTask goToCommand= SelectedUnits[i].ChangeCommand<GoToTask>();
-                goToCommand.SetDestination(startDragRayHit.point);
+                GoToTask goToTask= SelectedUnits[i].ChangeTask<GoToTask>();
+                goToTask.SetDestination(startDragRayHit.point);
             }
         }
     }
